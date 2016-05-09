@@ -1,0 +1,34 @@
+@(status:Int,item:String)
+
+
+<script lang="javascript">
+
+    function fun(){
+    form=document.getElementById("form");
+    form.action='/filter'
+    form.submit()
+    }
+
+    function bill(){
+    form=document.getElementById("form");
+    form.action='/getBill'
+    form.submit()
+    }
+
+</script>
+
+<title>Cart</title>
+
+<body>
+<form action="/filter" method="post" id="form" name="form">
+@if(status>0){
+<h3> <font color="green">Add to cart successfully</font> </h3>
+}else{
+<h3> <font color="green">Not Add to cart</font> </h3>
+}
+
+    <input type="hidden" name="item" value='@item'>
+    <a href="#" onclick="fun()">Add more</a>
+    <a href="#" onclick="bill()">Get Bill</a>
+</form>
+</body>

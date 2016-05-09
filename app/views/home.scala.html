@@ -1,0 +1,29 @@
+
+
+<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/home.css")">
+<head>
+    <meta charset="UTF-8">
+    <title>New Home</title>
+</head>
+
+<body>
+<form method="post" action="/search" id="form" name="form">
+    <div>
+        <div id="head">
+            <h1>Pizza Hut</h1>
+        </div>
+
+        <div style="margin-top:10px">
+            <p></p>
+            <center> <input type="search" placeholder="Search item" name="item" size="100%" autofocus>
+                <input type="submit" id="searchBtn" value="Search"></center>
+        </div>
+
+        <div style="margin-top:80px">
+           <center><a href="/customPizza"><font color="Red" size="/customPizza"> Get custom Pizza</font></a></center>
+         <img src="/assets/images/pizza1.jpg" height="60%" width="100%" >
+        </div>
+
+    </div>
+</form>
+</body>

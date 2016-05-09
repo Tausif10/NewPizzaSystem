@@ -1,0 +1,97 @@
+@import model.Types
+
+@(item:String,detailList:List[Types],sizes:List[String],chkList:List[String])
+
+<script lang="javascript">
+
+    function fun(){
+    form=document.getElementById("form");
+    form.action='/filter'
+    form.submit()
+    }
+
+</script>
+
+<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/home.css")">
+<head>
+    <meta charset="UTF-8">
+    <title>New Home</title>
+</head>
+
+<body>
+<form method="post" action="/search" id="form" name="form">
+    <div>
+        <div id="head">
+            <h1>Pizza Hut</h1>
+        </div>
+
+        <div style="margin-top:10px">
+            <p></p>
+            <center> <input type="search" placeholder="Search item" name="item" size="100%" autofocus value='@item'>
+                <input type="submit" id="searchBtn" value="Search">
+            </center>
+        </div>
+
+        @if(sizes.length!=0){
+        <div>
+            <h4>Refine result:</h4>
+            <div id="header">
+                <h3><b>&nbsp;&nbsp;&nbsp;&nbsp;Size</b></h3>
+                @for(i<-0 to sizes.length-1){
+                <div class="content">
+                    @if(chkList.contains(sizes(i))){
+                    <input type="checkbox" id='@sizes(i)' onchange="fun()" name="size" value="@sizes(i)" checked>
+                    <label for='@sizes(i)'>
+                    @sizes(i).charAt(0).toUpper@sizes(i).substring(1)
+                    </label>
+                    }else{
+                    <input type="checkbox" id='@sizes(i)' onchange="fun()" name="size" value="@sizes(i)">
+                    <label for='@sizes(i)'>
+                        @sizes(i).charAt(0).toUpper@sizes(i).substring(1)
+                    </label>
+                    }
+                    <br>
+                </div>
+                }
+            </div>
+        </div>
+
+        <div id="description">
+            @if(detailList.isEmpty){
+                <h1>No Result Found</h1>
+            }
+
+            @for(details<-detailList){
+            <font color="blue"> @details.itemType</font>
+            <p></p>
+            <tr>
+                <td><b>Details:</b></td>
+                <td>@details.detail</td><br>
+                <td><b>Size:</b></td>
+                <td>@details.size</td><br>
+                <td><b>Price:</b></td>
+                <td>@details.price</td>
+                <td>
+                    <a href="/addToCart?item=@item&Size=@details.size&base=@details.itemType&total=@details.price&Topping=@details.detail" >
+                        <input type="button" value="Add to Cart">
+                    </a>
+                </td>
+            </tr><br>
+            @if(details!=detailList.last){
+            <hr>
+            }
+            }
+        </div>
+        }else{
+        <h1>No Result found</h1>
+        }
+        <div style="margin-top:400px">
+            <input type="submit" value="Get Bill" onclick="form.action='/getBill'">
+        </div>
+
+        <input type="hidden" name="sizeList" value='@sizes.mkString(",")'>
+        <input type="hidden" name="detailList" value='@detailList.mkString("$")'>
+
+    </div>
+</form>
+</body>
