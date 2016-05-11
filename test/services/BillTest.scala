@@ -9,11 +9,11 @@ class BillTest extends Specification with Mockito{
   val order=new Bill
   "it" should {
     "give order total detail" in {
-      order.getOrderDetail(0) mustEqual (Nil)
+      order.getOrderDetail(-1) mustEqual (Nil)
     }
 
     "give order total" in {
-      val orderList = order.getOrderDetail(0)
+      val orderList = order.getOrderDetail(-1)
       order.getOrderTotal(orderList) mustEqual (0)
     }
 

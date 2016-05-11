@@ -10,39 +10,44 @@ class getItemTypes {
  private val rsToList=new ResultSetToList()
 
 
-  def getItemId(item:String)={
-    val sql="select * from items where item='"+item.toLowerCase+"'"
+  def getItemId(item:String) = {
+    val itm=item.split(" ")
+    val sql="select * from items where item in("+itm.mkString("'","','","'").toLowerCase+")"
     val items=db.getResultSet(sql)
-    rsToList.getzItemId(items)
-
-  }
-  def getItemdetail(item:String)={
-    if(item.isEmpty){
-       Nil
+    val itemId=rsToList.getzItemId(items)
+    if(!itemId.isEmpty){
+      itemId(0).toInt
     }else{
-      val id=getItemId(item)
-      val itemId=id.mkString("")
-      val sql="select * from item_types where item_id="+itemId.toInt
-      val types=db.getResultSet(sql)
-      rsToList.getDetailList(types)
+      0
     }
-
   }
 
-  def getSizeList(item:String)={
-    val sql="select * from item_size where item_id=(select item_id from items where item='"+item.toLowerCase+"')"
+  def getItemdetail(item:String) = {
+    if(item.isEmpty) {
+       Nil
+    } else {
+      val id=getItemId(item)
+      if(id!=0) {
+        val sql = "select * from item_types where item_id=" + id
+        val types = db.getResultSet(sql)
+        rsToList.getDetailList(types)
+      }else{
+        Nil
+      }
+    }
+  }
+
+  def getSizeList(item:String) = {
+    val itm=item.split(" ")
+    val sql="select * from item_size where item_id=(select item_id from items where item in("+itm.mkString("'","','","'").toLowerCase+"))"
     val types=db.getResultSet(sql)
     rsToList.getSizeList(types)
   }
 
-  def filter(sizes:List[String])={
-    println("size List= "+sizes.mkString("'","','","'"))
-    val sql="select * from item_types where size_id in (select size_id from item_size where size in("+sizes.mkString("'","','","'").toLowerCase+"))"
+  def filter(sizes:List[String]) = {
+    val sql="select * from item_types where size_id in (select size_id from item_size where size in("+
+      sizes.mkString("'","','","'").toLowerCase+"))"
     val filterRs=db.getResultSet(sql)
     rsToList.getDetailList(filterRs)
   }
-
-
-
-
 }
