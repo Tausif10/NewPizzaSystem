@@ -36,3 +36,5 @@ class BillController extends Controller{
   }
 
 }
+
+object BillController extends BillController

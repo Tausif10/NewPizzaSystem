@@ -29,3 +29,5 @@ class FilterController extends Controller{
   }
 
 }
+
+object FilterController extends FilterController

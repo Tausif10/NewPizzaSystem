@@ -23,3 +23,5 @@ class SearchController extends Controller{
   }
 
 }
+
+object  SearchController extends SearchController

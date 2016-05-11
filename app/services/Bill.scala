@@ -1,6 +1,5 @@
 package services
 
-import model.Order
 import myUtility.{ResultSetToList, DataBaseConnection}
 
 /**
@@ -17,11 +16,11 @@ class Bill {
     rsToList.getOrderList(orderDetails)
   }
 
-  def getOrderTotal(orderList:List[Order])={
+  def getOrderTotal(orderList:List[model.Order])={
     getSum(orderList,0,0)
   }
 
-  private def getSum(orderList:List[Order],sum:Int,index:Int):Int={
+  private def getSum(orderList:List[model.Order],sum:Int,index:Int):Int={
     if(index==orderList.length){
       sum
     }else{
@@ -30,10 +29,10 @@ class Bill {
   }
 
   def getServiceTax(total:Int):Int={
-    math.round(total*5/100)
+    total*5/100
   }
 
   def getVat(total:Int)={
-    math.round(total*6/100)
+    total*6/100
   }
 }

@@ -19,3 +19,5 @@ class OrderCancelController extends Controller{
   }
 
 }
+
+object OrderCancelController extends OrderCancelController

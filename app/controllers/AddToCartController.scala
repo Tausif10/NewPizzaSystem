@@ -30,3 +30,5 @@ class AddToCartController extends Controller{
   }
 
 }
+
+object  AddToCartController extends AddToCartController
