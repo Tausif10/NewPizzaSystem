@@ -7,7 +7,7 @@ import org.specs2.mutable.Specification
 class BillTest extends Specification with Mockito{
 
   val order=new Bill
-  "it" should {
+  "Bill" should {
     "give order total detail" in {
       order.getOrderDetail(-1) mustEqual (Nil)
     }

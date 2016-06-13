@@ -8,8 +8,8 @@ import myUtility.DataBaseConnection
 class Cart {
 
   val db=new DataBaseConnection()
-  def add(orderId:BigInt,size:String,base:String,topping:String,total:Int)={
-    val sql="insert into order_detail(detail_id,quant,size,base,sauce,topping,cheese,total) values("+orderId+","+1+",'"+size+"','"+base+"','"+""+"','"+topping+"','"+""+"',"+total+")"
+  def add(orderId:BigInt,quant:Int,size:String,base:String,topping:String,total:Int,sauce:String,cheese:String)={
+    val sql="insert into order_detail(detail_id,quant,size,base,sauce,topping,cheese,total) values("+orderId+","+quant+",'"+size+"','"+base+"','"+sauce+"','"+topping+"','"+cheese+"',"+total+")"
     db.executeSql(sql)
   }
 

@@ -2,6 +2,7 @@ package controllers
 
 
 import play.api.mvc._
+import services.getItemTypes
 
 /**
  * This controller creates an `Action` to handle HTTP requests to the
@@ -16,6 +17,17 @@ class HomeController extends Controller {
 
   def home = Action {
     Ok(views.html.home())
+  }
+
+  def customPizza = Action {
+    val itemDetails=new getItemTypes()
+    val sizes=itemDetails.getSizeList("pizza")
+    val baseList=itemDetails.baseList()
+    val sauceList=itemDetails.sauceList()
+    val topping=itemDetails.toppingList()
+    val cheeses=itemDetails.cheeseList()
+    println(">>>>>>"+cheeses)
+    Ok(views.html.customPizza(sizes,baseList,sauceList,topping,cheeses))
   }
 }
 

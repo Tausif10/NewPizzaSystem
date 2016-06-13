@@ -13,6 +13,7 @@ class SearchController extends Controller{
       val item=request.body.asFormUrlEncoded.get("item")(0)
       val itemDetails=new getItemTypes()
       val sizes=itemDetails.getSizeList(item)
+
       if(sizes.isEmpty){
         Ok(views.html.search(item, Nil, Nil, Nil))
       }else {

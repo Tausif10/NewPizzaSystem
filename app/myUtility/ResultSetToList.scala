@@ -49,4 +49,35 @@ class ResultSetToList {
     list
   }
 
+  def getBaseList(rs:ResultSet) = {
+    var list:List[String]=Nil
+    while(rs.next()){
+      list=list:::rs.getString("base")::Nil
+    }
+    list
+  }
+
+  def getSauceList(rs:ResultSet) = {
+    var list:List[String]=Nil
+    while(rs.next()){
+      list=list:::rs.getString("sauce")::Nil
+    }
+    list
+  }
+
+  def getToppingList(rs:ResultSet) = {
+    var list:List[String]=Nil
+    while(rs.next()){
+      list=list:::rs.getString("topping")::Nil
+    }
+    list
+  }
+
+  def getCheeseList(rs:ResultSet) = {
+    var list:List[String]=Nil
+    while(rs.next()){
+      list=list:::rs.getString("cheese")::Nil
+    }
+    list
+  }
 }

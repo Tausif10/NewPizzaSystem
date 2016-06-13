@@ -50,4 +50,28 @@ class getItemTypes {
     val filterRs=db.getResultSet(sql)
     rsToList.getDetailList(filterRs)
   }
+
+  def baseList() = {
+    val sql="select * from pizzaBase"
+    val bases=db.getResultSet(sql)
+    rsToList.getBaseList(bases)
+  }
+
+  def sauceList() = {
+    val sql="select * from pizzaSauce"
+    val sauces=db.getResultSet(sql)
+    rsToList.getSauceList(sauces)
+  }
+
+  def toppingList() = {
+    val sql="select * from topping"
+    val topping=db.getResultSet(sql)
+    rsToList.getToppingList(topping)
+  }
+
+  def cheeseList() = {
+    val sql="select * from cheese"
+    val cheese=db.getResultSet(sql)
+    rsToList.getCheeseList(cheese)
+  }
 }

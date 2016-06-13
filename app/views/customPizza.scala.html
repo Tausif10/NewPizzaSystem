@@ -1,0 +1,85 @@
+@(sizes:List[String],bases:List[String],sauces:List[String],toppings:List[String],cheeses:List[String])
+<body>
+        @header()
+        <form method="get" action="/addToCart ">
+        <p>
+            <div align="center">
+                <table>
+
+                    <tr>
+                        <td>Quantity:</td>
+                        <td><input type="number" name="quant" min="1" required/></td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Size:</b></td>
+                        <td>
+                        <select name="Size">
+                            @for(size<-sizes){
+                             <option value='@size'>@size.charAt(0).toUpper@size.substring(1)</option>
+                             }
+                        </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Base:</b></td>
+                        <td>
+                            <select name="base">
+                                @for(base<-bases){
+                                <option value='@base'>@base.charAt(0).toUpper@base.substring(1)</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Sauce:</b></td>
+                        <td>
+                            <select name="sauce">
+                                @for(sauce<-sauces){
+                                <option value='@sauce'>@sauce.charAt(0).toUpper@sauce.substring(1)</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Topping:</b></td>
+                        <td>
+                            @for(topping <- toppings) {
+                                @if(toppings.indexOf(topping)==0){
+                                    <input type="checkbox" name="Topping" value='@topping' checked>@topping.charAt(0).toUpper@topping.substring(1)
+                                }else{
+                                     <input type="checkbox" name="Topping" value='@topping'>@topping.charAt(0).toUpper@topping.substring(1)
+                                }
+                                @if((toppings.indexOf(topping)+1)%4==0){
+                                    <br/>
+                                }
+                            }
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Cheese</b></td>
+                        <td>
+                            <select name="cheese">
+                                @for(cheese<-cheeses){
+                                <option value='@cheese'>@cheese.charAt(0).toUpper@cheese.substring(1)</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Add to Cart">
+                            <input type="reset">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </p>
+            <input type="hidden" name="isCustomPizza" value="true">
+        </form>
+</body>
