@@ -22,7 +22,7 @@ class ResultSetToList {
     }
     list
   }
-
+Int
   def getSizeList(rs:ResultSet)={
     var list:List[String]=Nil
     while(rs.next()){
