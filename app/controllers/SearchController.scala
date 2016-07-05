@@ -3,6 +3,8 @@ package controllers
 import play.api.mvc.{Action, Controller}
 import services.getItemTypes
 
+import scala.util.Random
+
 /**
   * Created by tsn3316 on 5/4/16.
   */
@@ -18,11 +20,17 @@ class SearchController extends Controller{
         Ok(views.html.search(item, Nil, Nil, Nil))
       }else {
         val detailList = itemDetails.getItemdetail(item)
+        val orderId= if(request.session.get("orderID").isEmpty){
+          Random.nextInt()
+        }else{
+          request.session.get("orderID").get.toInt
+        }
+        println("search id="+orderId)
         val itemId = itemDetails.getItemId(item)
         if (item.isEmpty) {
           Ok(views.html.home())
         } else {
-          Ok(views.html.search(item, detailList, sizes, Nil)).withSession("itemId" -> itemId.toString())
+          Ok(views.html.search(item, detailList, sizes, Nil)).withSession("itemId" -> itemId.toString(),"orderID" -> orderId.toString)
         }
       }
   }

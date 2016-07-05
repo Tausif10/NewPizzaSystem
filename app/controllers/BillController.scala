@@ -20,7 +20,6 @@ class BillController extends Controller{
       val serviceTax=bill.getServiceTax(orderTotal)
       val vat=bill.getVat(orderTotal)
       val total=orderTotal+vat+serviceTax
-
       Ok(views.html.bill(item,orderList,orderTotal,serviceTax,vat,total))
   }
 

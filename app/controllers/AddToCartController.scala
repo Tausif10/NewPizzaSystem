@@ -37,6 +37,7 @@ class AddToCartController extends Controller{
 
       val cart=new Cart()
       val status=cart.add(orderId,quantity.toInt,size,base,topping.mkString(","),totalBill,sauce,cheese)
+      println(">>>>>>orderid="+orderId)
       Ok(views.html.addToCart(status,item)).withSession("orderID"->orderId.toString)
   }
 }
