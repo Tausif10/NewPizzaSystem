@@ -27,7 +27,7 @@ class BillController extends Controller{
     request=>
       val custName=request.body.asFormUrlEncoded.get("custName")(0)
       val total=request.body.asFormUrlEncoded.get("total")(0)
-      val orderId=request.session.get("orderID").getOrElse("0")
+      val orderId=request.session.get("orderID").getOrElse("")
       val paymentId=Random.nextInt()
       val order=new Order()
       val status=order.pay(orderId.toInt,custName,paymentId,total.toFloat)

@@ -1,5 +1,9 @@
 // The Play plugin
 //
+resolvers += "Sonatype snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
+
+addSbtPlugin("com.github.mpeltonen" % "sbt-idea" % "1.7.0-SNAPSHOT")
+
 addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.5.3")
 
 // web plugins

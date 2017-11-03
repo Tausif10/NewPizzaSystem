@@ -20,7 +20,7 @@ class SearchController extends Controller{
         Ok(views.html.search(item, Nil, Nil, Nil))
       }else {
         val detailList = itemDetails.getItemdetail(item)
-        val orderId= if(request.session.get("orderID").isEmpty){
+        val orderId= if(request.session.get("orderID").getOrElse("").isEmpty || request.session.get("orderID").getOrElse("").equals("-0") ){
           Random.nextInt()
         }else{
           request.session.get("orderID").get.toInt

@@ -1,9 +1,17 @@
 @(status:Int)
+
+<script lang="javascript">
+function fun(){
+form=document.getElementById("form");
+form.action='/home'
+form.submit()
+}
+</script>
 <title>Payment</title>
 @if(status>0){
 <h3> <font color="green">Payment made successfully</font> </h3>
 }else{
-<h3> <font color="green">Payment faile</font> </h3>
-}<form method="post">
-<a href="/home">Go to Home</a>
+<h3> <font color="green" >Payment faile</font> </h3>
+}<form method="post" name="form" id="form">
+<a href="#" onclick="fun()">Go to Home</a>
 </form>

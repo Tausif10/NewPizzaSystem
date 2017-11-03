@@ -29,7 +29,7 @@ class AddToCartController extends Controller{
         total.toInt*quantity.toInt
       }
 
-      val orderId= if(request.session.get("orderID").isEmpty){
+      val orderId= if(request.session.get("orderID").getOrElse("").isEmpty || request.session.get("orderID").getOrElse("").equals("-0")){
         Random.nextInt()
       }else{
         request.session.get("orderID").get.toInt
@@ -37,7 +37,6 @@ class AddToCartController extends Controller{
 
       val cart=new Cart()
       val status=cart.add(orderId,quantity.toInt,size,base,topping.mkString(","),totalBill,sauce,cheese)
-      println(">>>>>>orderid="+orderId)
       Ok(views.html.addToCart(status,item)).withSession("orderID"->orderId.toString)
   }
 }

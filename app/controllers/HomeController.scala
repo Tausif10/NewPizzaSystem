@@ -17,9 +17,9 @@ class HomeController extends Controller {
 
   def home = Action {
   request=>
-    val orderId=request.session.get("orderID").getOrElse(0)
+    val orderId=request.session.get("orderID").getOrElse("-0")
     println(">>>>>"+orderId)
-    Ok(views.html.home()).withSession("orderID"->orderId.toString)
+    Ok(views.html.home()).withSession("orderID" -> orderId.toString)
   }
 
   def customPizza = Action {

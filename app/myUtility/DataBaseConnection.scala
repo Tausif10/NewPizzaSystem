@@ -9,7 +9,7 @@ class DataBaseConnection {
 
   private def getConnection={
     Class.forName("com.mysql.jdbc.Driver")
-    DriverManager.getConnection("jdbc:mysql://localhost/myPizzaSystem","root","tausif")
+    DriverManager.getConnection("jdbc:mysql://localhost/myPizzaSystem","root","")
   }
 
   def getResultSet(sql:String)={
