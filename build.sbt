@@ -11,4 +11,3 @@ libraryDependencies ++= Seq(
   "org.jsoup" % "jsoup" % "1.8.1" % "test",
   specs2 % Test
 )
-
